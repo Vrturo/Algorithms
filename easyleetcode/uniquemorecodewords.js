@@ -28,30 +28,37 @@
   const codes = 
   [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."];
 
-    const wordToMorse = function(word) {
-    const result = [];
+const wordToMorse = function(word) {
+   const result = [];
 
-    for (let i = 0; i < word.length; i += 1) {
-       const currentLetter = word[i];
-       const code = codes[currentLetter.charCodeAt() - 97];
-       result.push(code);
-    }
-    return result.join('');
+   for (let i = 0; i < word.length; i += 1) {
+      const currentLetter = word[i];
+      // charCodeAt() method returns an integer between 0 and 65535 representing the UTF-16 code unit at the given index.
+      // in this case we need the a - z code units which are 97 - 122
+      // example: 'a'.charCodeAt() -> 97 | 'z'.charCodeAt() -> 122
+      // We subtract 97 from the result integer, to make sure we always start at 0
+      // We start at 0 because the codes array has the a - z morse characters starting with the letter 'a' on the first item in the array
+      const index = currentLetter.charCodeAt() - 97;
+      const code = codes[index];
+      result.push(code);
+   }
+   return result.join('');
 }
 
-     var uniqueMorseRepresentations = function(words) {
-       let count = 0;
-       const structure = [];
+var uniqueMorseRepresentations = function(words) {
+   let uniqueCount = 0;
+   const morseCodesFound = {};
 
-      words.forEach(word => {
-              const morse = wordToMorse(word);
+   words.forEach(word => {
+      const morseCode = wordToMorse(word);
 
-    if (!structure[morse]) {
-       count += 1;
-       structure[morse] = true;
-};
-});
-     return count;
+      if (!morseCodesFound[morseCode]) {
+         uniqueCount += 1;
+         morseCodesFound[morseCode] = true;
+
+      };
+   });
+   return uniqueCount;
 };
 
 
