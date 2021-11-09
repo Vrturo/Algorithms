@@ -23,29 +23,30 @@
 
 
 const complementPair = (arr) => {
-  const negativePositive = {};
+
+  const oppNumber = {};
   let result = [];
 
   for (let i = 0; i < arr.length; i++){
-    let integerIndex = arr[i];
+    let number = arr[i];
 
-    let opposite = integerIndex * -1;
+    let opposite = number * -1; // if we want to check the opposite we need to multiply by negative one 
+    // we have access to opposite by multiplying by negative 1 
 
-    // if we see the character for the first time set to 1
-    if (!negativePositive[integerIndex]){
-        negativePositive[integerIndex] = 1;  
+    // if we see the character for the first time save it
+    if (!oppNumber[number]){
+        oppNumber[number] = 1;  
     } 
 
-    // if we see the opposite character then we return into array 
-    if (negativePositive[opposite]){
-      // push the positive of integerIndex or opposite to result 
+    // checking for opposite 
+    if (oppNumber[opposite]){
       // how to check if an integer is positive
       // if number is greater than zero 
-      if (integerIndex > 0){
+      if (number > 0){
         // push positive into array 
-        result.push(integerIndex)
-      } else {
-        // if (integerIndex < 0){
+        result.push(number)
+      } else { // if not 
+        // if its less than 0 or 0
         result.push(opposite)
         // }
       }
@@ -66,4 +67,23 @@ console.log(complementPair(test));
 // let opposite = test * -1;
 
 // console.log("OPPOSITE: ", opposite);
+
+
+// problem is?
+// what the output 
+
+// approach 
+
+
+// Approach
+// check each item, save positives
+// check opposite muliply by negative one if we have too
+
+// Steps 
+// if we see number for first time we are going to save it
+// as we are saving numbers we are going to check for opposites
+// if the current number we are checking is positive we can push into result
+// if it is less than zero we push the opposite
+// keep going through each item until we go through all
+// then we can return that 
 

@@ -27,7 +27,7 @@
 
   var anagramPalindrome = function(word) {
     const characterCount = {};
-    let oddCharacterCount = 0;
+    let oddCount = 0;
     
     // Create Map
     for (let i = 0; i < word.length; i++){
