@@ -29,7 +29,8 @@
 
 
 var findLetters = function(word,letters){
-    const map = {};
+    const map = {}; // no point in having a map here if we'll potentiall never use it.
+    // if letters is less than word we'l never use it. This should be under the length check.
     
     if (letters.length < word.length) {
         return false; 
@@ -39,7 +40,9 @@ var findLetters = function(word,letters){
         if (!map[letters[i]]){
             map[letters[i]] = 1
         } else {
-            map[letters[i]] ++
+            map[letters[i]] ++ // you need to get better at ++ vs. +=
+            // for loops are the only place you want to use ++. Everywhere else if you use ++ it won't save the new value
+            // Should be -> map[letters[i]]+= 1
         }
     }
 
@@ -49,6 +52,10 @@ var findLetters = function(word,letters){
         } else {
            const newSum = map[word[i]] - 1
            map[word[i]] = newSum 
+           // this works but lets do 
+           // map[word[i]] -= 1
+           // Reason being less variables is always better, but readability is always something to consider.
+            // issue is I think -= 1 is actually easier to read
         }
     }
     return true;
