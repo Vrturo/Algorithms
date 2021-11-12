@@ -32,9 +32,9 @@
     // Create Map
     for (let i = 0; i < word.length; i++){
       if (characterCount[word[i]]){   //if it exists 
-          characterCount[words[i]] += 1; // add one
+          characterCount[word[i]] += 1; // add one
       } else {
-          characterCount[words[i] = 1 // if it wasnt there set it to 1 
+          characterCount[word[i]] = 1 // if it wasnt there set it to 1 
       }
     }
 
@@ -49,8 +49,6 @@
          }
 
          return true; // go through entire loop if we have never seen it then we will return true 
-
-
 
        };
 
